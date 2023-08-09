@@ -12,7 +12,20 @@ app.use(express.static("public"));
 app.get("/",function(req,res){
     res.sendFile(__dirname+"/index.html")
 })
-
+request.post(
+    'http://20.244.56.144/train/register',
+    { json: {   'companyName': 'GITAM Vishnu 322010302023',
+                'ownerName': 'vishnu sathwik',
+                'rollNo': '3220103020233',
+                'ownerEmail': 'sgurijal@gitam.in',
+                'accessCode':'oJnNPG'
+                } },
+    function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+        }
+    }
+    );
 request.post(
     'http://20.244.56.144/train/auth',
     { json: {   'companyName': 'GITAM vishnu',
@@ -27,6 +40,8 @@ request.post(
         }
     }
     );
+
+
 app.listen(4040,function(){
     console.log("hiii 4040");
 })
